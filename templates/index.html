@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>AFAF's STORE</title>
+
+        <!-- CSS FILES -->        
+        
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+        
+
+        <link href="{{ url_for('static', filename='css/bootstrap-icons.css') }}" rel="stylesheet">
+
+        <link href="{{ url_for('static', filename='css/templatemo-topic-listing.css') }}" rel="stylesheet">      
+
+    </head>
+    
+    <body id="top">
+
+        <main>
+
+          <nav class="navbar navbar-expand-lg" style="background-color: #5db0ba;">
+                <div class="container">
+                    <a class="navbar-brand" href="templates/index.html">
+                        <i class="bi-back"></i>
+                        <span>AFAF</span>
+                    </a>
+
+                    <div class="d-lg-none ms-auto me-4">
+                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    </div>
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_1">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_3">How it works</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_3">FAQs</a>
+                            </li>
+                            
+                        </ul>
+
+                        
+                    </div>
+                </div>
+            </nav>
+            
+
+            <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+                            <h1 class="text-white text-center">AFAF'S STORE</h1>
+
+                            <h6 class="text-center">search items you'd like to have</h6>
+
+                            <form method="POST" enctype="multipart/form-data">
+                                <input type="file" name="query_img" class="form-control"/><br />
+                                <input type="submit" class="form-control" value="Search"/>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            
+
+
+            <section class="explore-section section-padding" id="section_2">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12 text-center">
+                            <h2 class="mb-4">Browse items</h1>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="row">
+                      <div class="simi">
+                        <h2>finding similar items to :</h2>
+                        {% if query_path %}
+                        <img src="{{ query_path }}" width="200" height="300" />
+                        {% endif %}
+                      </div>
+
+                        
+                        
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
+                                    <div class="row">
+                                        <h2>Results:</h2>
+                                        {% set images_per_line = 5 %}
+                                        {% set current_image_count = 0 %}
+            
+                                        {% for score in scores %}
+                                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                                <div class="custom-block bg-white shadow-lg">
+                                                    <img src="{{ score[1] }}" style="max-width: 100%;" />
+                                                    <figcaption>{{ score[0] }}</figcaption>
+                                                </div>
+                                            </div>
+            
+                                            {% set current_image_count = (current_image_count + 1) % images_per_line %}
+                                            {% if current_image_count == 0 %}</div><div class="row">{% endif %}
+                                        {% endfor %}
+                                        </div>
+
+                                        
+
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="timeline-section section-padding" id="section_3">
+                <div class="section-overlay"></div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12 text-center">
+                            <h2 class="text-white mb-4">How does it work?</h1>
+                        </div>
+
+                        <div class="col-lg-10 col-12 mx-auto">
+                            <div class="timeline-container">
+                                <ul class="vertical-scrollable-timeline" id="vertical-scrollable-timeline">
+                                    <div class="list-progress">
+                                        <div class="inner"></div>
+                                    </div>
+
+                                    <li>
+                                        <h4 class="text-white mb-3">Uplaod the wanted item</h4>
+
+                                        <p class="text-white">upload the wanted item to our site, so the similar items we have in store will be shown</p>
+
+                                        <div class="icon-holder">
+                                          <i class="bi-search"></i>
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <h4 class="text-white mb-3">Tap Search</h4>
+
+                                        <p class="text-white">tap search so the search begins </p>
+
+                                        <div class="icon-holder">
+                                          <i class="bi-bookmark"></i>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <h4 class="text-white mb-3"> Chose and Buy whatever item you like </h4>
+
+                                        <p class="text-white">the results of your search are ready all you need to do is to pick and buy whatever item you like in our store</p>
+
+                                        <div class="icon-holder">
+                                          <i class="bi-book"></i>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </section>
+
+
+           
+
+
+            
+                
+        </main>
+
+<footer class="site-footer section-padding">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-12 mb-4 pb-2">
+                        <a class="navbar-brand mb-2" href="templates/index.html">
+                            <i class="bi-back"></i>
+                            <span>AFAF</span>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <h6 class="site-footer-title mb-3">Resources</h6>
+
+                        <ul class="site-footer-links">
+                            <li class="site-footer-link-item">
+                                <a href="#section_1" class="site-footer-link">Home</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#section_3" class="site-footer-link">How it works</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#section_3" class="site-footer-link">FAQs</a>
+                            </li>
+
+                            
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                        <h6 class="site-footer-title mb-3">Information</h6>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: 305-240-9671" class="site-footer-link">
+                                305-240-9671
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <a href="mailto:info@company.com" class="site-footer-link">
+                                afaf@store.com
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            English</button>
+
+                            
+                        </div>
+
+                        <p class="copyright-text mt-lg-5 mt-4">Copyright © 2048 afaf store. All rights reserved .</p>
+                       
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+
+        
+        
+
+
+    </body>
+</html>
